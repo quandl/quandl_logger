@@ -1,0 +1,1 @@
+## Quandl logger class for use in quandl gems.
