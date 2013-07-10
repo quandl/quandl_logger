@@ -21,6 +21,13 @@ module Quandl
         @@logger if defined?(@@logger)
       end
       
+      def info_with_elapsed(message=nil, &block)
+        timer = Time.now
+        result = block.call
+        info("#{message} (#{timer.elapsed.microseconds}ms)")
+        result
+      end
+      
       def use(log_file)
         log_file = ::Logger.new(log_file) if log_file.is_a?(String)
         @@logger = log_file
