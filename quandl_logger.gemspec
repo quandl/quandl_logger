@@ -5,7 +5,7 @@ require "quandl/logger/version"
 Gem::Specification.new do |s|
   s.name        = "quandl_logger"
   s.version     = Quandl::Logger::VERSION
-  s.authors     = ["Blkae Hilscher"]
+  s.authors     = ["Blake Hilscher"]
   s.email       = ["blake@hilscher.ca"]
   s.homepage    = "http://blake.hilscher.ca/"
   s.license     = "MIT"
@@ -22,5 +22,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "fivemat", "~> 1.2"
   s.add_development_dependency "pry"
 
-  s.add_runtime_dependency "activesupport", ">= 3.0.0"
+  s.add_runtime_dependency "activesupport", "~> 3.0.0"
 end
