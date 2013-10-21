@@ -3,20 +3,27 @@ require 'spec_helper'
 
 describe Quandl::Logger do
   
+  let(:client){ Cql::Client.connect( hosts: [ ENV['QUANDL_CASSANDRA_HOST'] ] ) }
+  
   describe "#use" do
     
     subject{ Quandl::Logger }
     
-    it "should accept a String" do
-      subject.use('development.log').logger.should be_a ::Logger
+    context "given String" do
+      before(:each){ subject.use('development.log') }
+      its(:logger){ should be_a ::Logger }
     end
-    it "should accept a Logger" do
-      subject.use( ::Logger.new('development.log') ).logger.should be_a ::Logger
+    
+    context "given Logger" do
+      before(:each){ subject.use( ::Logger.new('development.log') ) }
+      its(:logger){ should be_a ::Logger }
     end
-    # it "should accept a Cql::Client" do
-    #   client = Cql::Client.new
-    #   subject.use('development.log').logger.should be_a Quandl::Logger::Cql
-    # end
+    
+    context "given Cql::Client" do
+      before(:each){ subject.use( client ) }
+      its(:logger){ should be_a Quandl::Logger::Cql }
+    end
+    
   end
   
 end

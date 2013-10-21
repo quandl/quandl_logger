@@ -24,12 +24,8 @@ module Quandl
       end
       
       def use(value)
-        case value.class
-        when String       then use_file(value)
-        when Cql::Client  then use_cql(value)
-        else
-          @@logger = value
-        end
+        return use_cql(value)   if value.kind_of?( ::Cql::Client::SynchronousClient )
+        return use_file(value)  if value.kind_of?( ::Logger ) || value.kind_of?(String)
       end
       
       def info_with_elapsed(message=nil, &block)
@@ -42,7 +38,10 @@ module Quandl
       protected
       
       def use_file(file)
-        @@logger = ::Logger.new(file)
+        # convert string to logger
+        file = ::Logger.new(file) if file.kind_of?(String)
+        # assign Logger
+        @@logger = file
       end
       
       def use_cql(client)
