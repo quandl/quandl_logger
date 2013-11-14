@@ -7,6 +7,7 @@ require "active_support/inflector"
 require "active_support/core_ext/hash"
 require "active_support/core_ext/object"
 
+require 'quandl/logger/graylog2'
 
 module Quandl
   class Logger
