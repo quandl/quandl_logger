@@ -1,0 +1,4 @@
+test:
+  host:           'localhost'
+  port:           '8888'
+  facility:       'test-quandl_logger'
