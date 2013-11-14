@@ -25,5 +25,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "simplecov"
 
   s.add_runtime_dependency "activesupport", ">= 3.0.0"
-  s.add_runtime_dependency "gelf", "~> 1.3"
+  s.add_runtime_dependency "gelf", "~> 1.3.2"
 end

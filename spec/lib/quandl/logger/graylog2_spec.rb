@@ -8,6 +8,12 @@ describe Quandl::Logger::GrayLog2 do
   config_path = Pathname.new("spec/fixtures/config/graylog2.yml")
   config_env = 'test'
   config = YAML.load_file( config_path )[config_env]
+
+  [:debug, :info, :warn, :error, :fatal, :unknown].each do |level|
+    it ".#{level}('message')" do
+      subject.send(level, 'message')
+    end
+  end
   
   describe ".configure" do
     before(:each){
@@ -38,7 +44,5 @@ describe Quandl::Logger::GrayLog2 do
       
     end
   end
-  
-  
   
 end
