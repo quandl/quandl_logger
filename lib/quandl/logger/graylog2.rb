@@ -27,10 +27,10 @@ class Quandl::Logger::GrayLog2
   end
   
   class Configuration < Quandl::Configuration
-    configures :host, :port, :max_size, :facility, :version, :level
+    configures :host, :port, :max_size, :facility, :version, :level, :hostname
     
     def options
-      [:facility, :version, :level].inject({}){|m,k| m[k] = attributes[k] if attributes[k].present?; m }
+      [:hostname, :facility, :version, :level].inject({}){|m,k| m[k] = attributes[k] if attributes[k].present?; m }
     end
     
   end
