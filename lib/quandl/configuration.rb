@@ -47,7 +47,7 @@ class Configuration
   
   def assign_attributes(hash)
     hash.each do |k,v|
-      send("#{k}=", v) if self.class.attribute_names.include?(k) && respond_to?("#{k}=")
+      send("#{k}=", v) if self.class.attribute_names.include?(k.to_sym) && respond_to?("#{k}=")
     end
   end
   
