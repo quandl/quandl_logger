@@ -33,7 +33,7 @@ class Configuration
     
   end
 
-  def configure_from_file(path, env)
+  def from_file(path, env)
     config = YAML.load_file( path )[ env ]
     config.each{|k,v| self.send("#{k}=",v) if respond_to?("#{k}=") }
   end

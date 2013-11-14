@@ -33,9 +33,9 @@ describe Quandl::Logger::GrayLog2 do
   describe ".configuration" do
     subject{ logger.configuration }
     
-    describe "#configure_from_file" do
+    describe "#from_file" do
       
-      before(:each){ logger.configuration.configure_from_file( config_path, config_env) }
+      before(:each){ logger.configuration.from_file( config_path, config_env) }
       subject{ logger.configuration.attributes }
       
       config.each do |key, value|
