@@ -7,6 +7,8 @@ require "active_support/inflector"
 require "active_support/core_ext/hash"
 require "active_support/core_ext/object"
 
+require 'quandl/logger/cql'
+
 module Quandl
   class Logger
     class << self
@@ -21,6 +23,11 @@ module Quandl
         @@logger if defined?(@@logger)
       end
       
+      def use(value)
+        return use_cql(value)   if value.kind_of?( ::Cql::Client::SynchronousClient )
+        return use_file(value)  if value.kind_of?( ::Logger ) || value.kind_of?(String)
+      end
+      
       def info_with_elapsed(message=nil, &block)
         timer = Time.now
         result = block.call
@@ -28,11 +35,19 @@ module Quandl
         result
       end
       
-      def use(log_file)
-        log_file = ::Logger.new(log_file) if log_file.is_a?(String)
-        @@logger = log_file
+      protected
+      
+      def use_file(file)
+        # convert string to logger
+        file = ::Logger.new(file) if file.kind_of?(String)
+        # assign Logger
+        @@logger = file
       end
-  
+      
+      def use_cql(client)
+        @@logger = Quandl::Logger::Cql.new(client)
+      end
+      
     end
     
   end
