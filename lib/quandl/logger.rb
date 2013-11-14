@@ -7,7 +7,6 @@ require "active_support/inflector"
 require "active_support/core_ext/hash"
 require "active_support/core_ext/object"
 
-require 'quandl/logger/cql'
 
 module Quandl
   class Logger
@@ -24,7 +23,6 @@ module Quandl
       end
       
       def use(value)
-        return use_cql(value)   if value.kind_of?( ::Cql::Client::SynchronousClient )
         return use_file(value)  if value.kind_of?( ::Logger ) || value.kind_of?(String)
       end
       
@@ -42,10 +40,6 @@ module Quandl
         file = ::Logger.new(file) if file.kind_of?(String)
         # assign Logger
         @@logger = file
-      end
-      
-      def use_cql(client)
-        @@logger = Quandl::Logger::Cql.new(client)
       end
       
     end

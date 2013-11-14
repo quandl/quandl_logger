@@ -23,16 +23,3 @@ Quandl::Logger.use(file)
 
 
 ```
-
-
-## Cassandra
-
-```ruby
-
-require 'quandl/logger'
-
-client = Cql::Client.connect(hosts: ['cassandra.example.com'])
-Quandl::Logger.use(client)
-
-
-```
