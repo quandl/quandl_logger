@@ -1,7 +1,8 @@
+require 'pry'
 require 'quandl/logger'
 
-# use ruby old logger
-logger = Logger.new( File.join(Rails.root, "log/example.log") )
+# use logger
+logger = Logger.new( "./log/example.log" )
 
 Quandl::Logger.use( logger )
 

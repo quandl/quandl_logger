@@ -8,6 +8,7 @@ require "active_support/core_ext/hash"
 require "active_support/core_ext/object"
 
 require 'quandl/logger/graylog2'
+require 'quandl/logger/outputs'
 
 module Quandl
   class Logger
@@ -24,7 +25,8 @@ module Quandl
       end
       
       def use(value)
-        return use_file(value)  if value.kind_of?( ::Logger ) || value.kind_of?(String)
+        return use_file(value) if value.kind_of?(String)
+        @logger = value
       end
       
       def info_with_elapsed(message=nil, &block)
