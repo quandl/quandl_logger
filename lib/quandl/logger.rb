@@ -26,7 +26,7 @@ module Quandl
       
       def use(value)
         return use_file(value) if value.kind_of?(String)
-        @logger = value
+        @@logger = value
       end
       
       def info_with_elapsed(message=nil, &block)
