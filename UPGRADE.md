@@ -1,3 +1,8 @@
+## 0.2.4
+
+* Quandl::Logger::Outputs should write to stdout and stderr
+
+
 ## 0.2.1
 
 * add hostname to configuration
