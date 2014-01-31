@@ -13,6 +13,7 @@ factory_dir = File.join( File.dirname(__FILE__), 'factories/**/*.rb' )
 Dir.glob( factory_dir ).each{|f| require(f); puts f }
 
 require "quandl/logger"
+require 'quandl/logger/graylog2'
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods

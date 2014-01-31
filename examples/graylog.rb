@@ -1,4 +1,5 @@
 require 'quandl/logger'
+require 'quandl/logger/graylog2'
 
 # configure with block
 # configures :host, :port, :max_size, :facility, :version, :level
