@@ -1,3 +1,8 @@
+## 0.2.5
+
+* dont automatically require graylog2
+
+
 ## 0.2.4
 
 * Quandl::Logger::Outputs should write to stdout and stderr
