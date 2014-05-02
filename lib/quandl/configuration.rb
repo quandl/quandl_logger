@@ -4,6 +4,13 @@ module Quandl
 class Configuration
   class << self
     
+    attr_accessor :config_file, :config_env
+    
+    def from_file(file, env)
+      self.config_file = file
+      self.config_env = env
+    end
+    
     def configures(*names)
       define_attributes(*names)
     end
@@ -33,16 +40,17 @@ class Configuration
     
   end
 
-  def from_file(path, env)
-    config = YAML.load_file( path )[ env ]
-    config.each{|k,v| self.send("#{k}=",v) if respond_to?("#{k}=") }
-  end
-  
   def initialize(*args)
     attrs = args.extract_options!
     self.attributes
-    # assign attributes
     self.assign_attributes(attrs)
+    from_file(self.class.config_file, self.class.config_env) if self.class.config_file.present? && self.class.config_env.present?
+  end
+
+  def from_file(path, env)
+    config = YAML.load_file( path )[ env ]
+    raise ArgumentError, "Unknown env #{env}" if config.nil?
+    config.each{|k,v| self.send("#{k}=",v) if respond_to?("#{k}=") }
   end
   
   def assign_attributes(hash)
