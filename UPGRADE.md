@@ -1,3 +1,9 @@
+## 0.1.0 
+
+
+
+
+
 ## 0.2.5
 
 * dont automatically require graylog2
