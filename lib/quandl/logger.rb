@@ -5,7 +5,6 @@ require 'quandl/logger/version'
 require "active_support"
 require "active_support/inflector"
 require "active_support/core_ext/hash"
-require "active_support/core_ext/object"
 
 require 'quandl/logger/outputs'
 
