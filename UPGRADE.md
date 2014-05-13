@@ -1,3 +1,9 @@
+## 0.2.0 
+
+
+
+
+
 ## 0.1.0 
 
 * QUGC-189 logger does not require core_ext object
